@@ -1,0 +1,908 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BAKOME HUB • Ultra Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #03040b;
+      --bg2: #0a1020;
+      --card: rgba(10,15,30,0.88);
+      --card2: rgba(0,255,140,0.06);
+      --green: #00ff99;
+      --blue: #00bbff;
+      --purple: #8a5cff;
+      --gold: #ffd700;
+      --red: #ff4d6d;
+      --text: #e5ecff;
+      --muted: #94a3b8;
+      --border: rgba(0,255,153,0.14);
+      --shadow: 0 0 40px rgba(0,255,153,0.08);
+      --radius: 18px;
+      --gradient: linear-gradient(135deg, #00ff99, #00bbff, #8a5cff);
+    }* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(0,255,153,0.08), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(0,187,255,0.08), transparent 30%),
+    var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--green), var(--blue));
+  border-radius: 20px;
+}
+
+.container {
+  width: min(1500px, 95%);
+  margin: auto;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  backdrop-filter: blur(20px);
+  background: rgba(0,0,0,0.5);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  gap: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+.logo-badge {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: var(--gradient);
+  display: grid;
+  place-items: center;
+  color: #000;
+  font-weight: 900;
+  box-shadow: var(--shadow);
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.menu button {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 12px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-weight: 600;
+}
+
+.menu button:hover,
+.menu button.active {
+  background: var(--gradient);
+  color: #000;
+  transform: translateY(-2px);
+  border-color: transparent;
+}
+
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(0,255,153,0.14), transparent 60%);
+  top: -200px;
+  right: -120px;
+  border-radius: 50%;
+  filter: blur(20px);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 50px;
+  align-items: center;
+  padding: 70px 0;
+}
+
+.hero-content h1 {
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 1;
+  margin-bottom: 20px;
+  font-family: 'Orbitron', sans-serif;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-content p {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 1.05rem;
+  max-width: 700px;
+}
+
+.hero-buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 16px 24px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.btn-primary {
+  background: var(--gradient);
+  color: #000;
+  box-shadow: var(--shadow);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.btn:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
+.hero-panel {
+  background: rgba(0,0,0,0.35);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 30px;
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+}
+
+.terminal {
+  background: #000;
+  border-radius: 18px;
+  padding: 20px;
+  border: 1px solid rgba(0,255,153,0.2);
+  overflow: hidden;
+}
+
+.terminal-top {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dot.red { background: #ff5f57; }
+.dot.yellow { background: #febc2e; }
+.dot.green { background: #28c840; }
+
+.code {
+  font-family: monospace;
+  line-height: 1.7;
+  color: var(--green);
+  font-size: 0.92rem;
+  white-space: pre-wrap;
+}
+
+section {
+  padding: 80px 0;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.section-title h2 {
+  font-size: 2.5rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.section-title p {
+  color: var(--muted);
+  max-width: 700px;
+}
+
+.search-box {
+  margin-top: 20px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.search-box input {
+  flex: 1;
+  min-width: 260px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+  color: white;
+  font-size: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: 0.4s ease;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.05), transparent);
+  transform: translateX(-120%);
+  transition: 0.7s;
+}
+
+.card:hover::before {
+  transform: translateX(120%);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: var(--green);
+  box-shadow: 0 0 40px rgba(0,255,153,0.1);
+}
+
+.tag {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(0,255,153,0.08);
+  border: 1px solid rgba(0,255,153,0.15);
+  color: var(--green);
+  font-size: 0.75rem;
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+
+.card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.card a {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.stat-box {
+  padding: 30px;
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(0,255,153,0.08), rgba(0,187,255,0.05));
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.stat-box h3 {
+  font-size: 3rem;
+  color: var(--green);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.stat-box p {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.market-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.market-card {
+  background: rgba(255,255,255,0.03);
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid var(--border);
+}
+
+.market-card h4 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+.price {
+  font-size: 2rem;
+  color: var(--green);
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.positive {
+  color: var(--green);
+}
+
+.negative {
+  color: var(--red);
+}
+
+.timeline {
+  position: relative;
+  padding-left: 30px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(var(--green), var(--blue));
+  border-radius: 20px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+  padding-left: 30px;
+}
+
+.timeline-item::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--green);
+  position: absolute;
+  left: -9px;
+  top: 4px;
+  box-shadow: 0 0 20px rgba(0,255,153,0.5);
+}
+
+.timeline-item h4 {
+  margin-bottom: 8px;
+}
+
+.timeline-item p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 50px 0;
+  margin-top: 80px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+}
+
+.footer h4 {
+  margin-bottom: 16px;
+  color: var(--green);
+}
+
+.footer ul {
+  list-style: none;
+}
+
+.footer li {
+  margin-bottom: 12px;
+  color: var(--muted);
+}
+
+.footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.footer-bottom {
+  margin-top: 40px;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.glow {
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 5px rgba(0,255,153,0.3));
+  }
+  to {
+    filter: drop-shadow(0 0 25px rgba(0,255,153,0.7));
+  }
+}
+
+@media(max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar-inner {
+    flex-direction: column;
+  }
+
+  .menu {
+    justify-content: center;
+  }
+}
+
+  </style>
+</head>
+<body>  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="logo">
+        <div class="logo-badge glow">B</div>
+        <span>BAKOME HUB</span>
+      </div><div class="menu">
+    <button class="active">Home</button>
+    <button>Projects</button>
+    <button>AI Lab</button>
+    <button>Cybersecurity</button>
+    <button>Trading</button>
+    <button>Research</button>
+    <button>Community</button>
+    <button>Contact</button>
+  </div>
+</div>
+
+  </header>  <main><section class="hero">
+  <div class="container hero-grid">
+
+    <div class="hero-content">
+      <div class="tag">OPEN SOURCE • AI • RUST • CYBERSECURITY</div>
+      <h1>BAKOME GLOBAL ECOSYSTEM</h1>
+      <p>
+        Futuristic open source ecosystem built for AI research, algorithmic trading,
+        cybersecurity, blockchain infrastructure, scientific computing, and autonomous systems.
+        Designed with performance-first engineering powered by Rust, AI agents, and modern web technologies.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="btn btn-primary">Launch Platform</button>
+        <button class="btn btn-secondary">Explore 200+ Tools</button>
+      </div>
+    </div>
+
+    <div class="hero-panel">
+      <div class="terminal">
+        <div class="terminal-top">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+        </div>
+
+        <div class="code">
+
+$ cargo run --release
+
+[INFO] BAKOME Quantum Engine Initialized [INFO] AI Trading Signals Online [INFO] Cybersecurity Scanner Activated [INFO] 54 Open Source Projects Loaded [INFO] Neural Market Prediction Ready [INFO] Blockchain Nodes Connected [INFO] GPU Inference Online [INFO] Threat Detection: ACTIVE
+
+> Welcome to BAKOME HUB </div> </div> </div>
+
+
+
+</div>
+</section>
+
+<section>
+  <div class="container">
+
+    <div class="section-title">
+      <div>
+        <h2>Platform Statistics</h2>
+        <p>
+          Real-time ecosystem overview covering AI research, cybersecurity infrastructure,
+          blockchain engines, and open source repositories.
+        </p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <h3>54+</h3>
+        <p>Open Source Projects</p>
+      </div>
+
+      <div class="stat-box">
+        <h3>200+</h3>
+        <p>Integrated Tools</p>
+      </div>
+
+      <div class="stat-box">
+        <h3>15+</h3>
+        <p>AI Systems</p>
+      </div>
+
+      <div class="stat-box">
+        <h3>100%</h3>
+        <p>Built on Open Source</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="container">
+
+    <div class="section-title">
+      <div>
+        <h2>Project Search</h2>
+        <p>
+          Search across trading bots, AI frameworks, blockchain libraries,
+          scientific research tools, and cybersecurity systems.
+        </p>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <input type="text" id="search" placeholder="Search AI, Rust, trading, security..." />
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="container">
+
+    <div class="section-title">
+      <div>
+        <h2>Featured Projects</h2>
+        <p>
+          Advanced open source software engineered for performance, security,
+          AI reasoning, algorithmic finance, and decentralized infrastructure.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid" id="projectGrid">
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="container">
+
+    <div class="section-title">
+      <div>
+        <h2>AI Research Lab</h2>
+        <p>
+          Integrated AI ecosystem including local LLMs, autonomous agents,
+          retrieval systems, and multimodal reasoning infrastructure.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="tag">LLM</div>
+        <h3>DeepSeek Integration</h3>
+        <p>
+          Advanced reasoning and coding system for research, automation,
+          infrastructure analysis, and high-performance workflows.
+        </p>
+        <a href="#">Launch AI</a>
+      </div>
+
+      <div class="card">
+        <div class="tag">OPEN SOURCE</div>
+        <h3>Ollama Runtime</h3>
+        <p>
+          Local inference infrastructure optimized for privacy,
+          low-latency execution, and offline AI deployment.
+        </p>
+        <a href="#">Run Local Models</a>
+      </div>
+
+      <div class="card">
+        <div class="tag">MULTI AGENT</div>
+        <h3>CrewAI Orchestrator</h3>
+        <p>
+          Multi-agent collaboration framework for autonomous execution,
+          data processing, and intelligent automation.
+        </p>
+        <a href="#">Deploy Agents</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="container">
+
+    <div class="section-title">
+      <div>
+        <h2>Market Intelligence</h2>
+        <p>
+          Quantitative finance dashboard with AI-powered signal generation,
+          blockchain analytics, and multi-market execution systems.
+        </p>
+      </div>
+    </div>
+
+    <div class="market-board">
+
+      <div class="market-card">
+        <h4>BTC/USD</h4>
+        <div class="price">$108,450</div>
+        <p class="positive">+3.25% Today</p>
+      </div>
+
+      <div class="market-card">
+        <h4>XAU/USD</h4>
+        <div class="price">$3,241</div>
+        <p class="positive">+1.82% Today</p>
+      </div>
+
+      <div class="market-card">
+        <h4>ETH/USD</h4>
+        <div class="price">$5,240</div>
+        <p class="positive">+5.17% Today</p>
+      </div>
+
+      <div class="market-card">
+        <h4>NASDAQ</h4>
+        <div class="price">21,842</div>
+        <p class="negative">-0.42% Today</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="container">
+
+    <div class="section-title">
+      <div>
+        <h2>Cybersecurity Infrastructure</h2>
+        <p>
+          Real-time malware detection, SBOM analysis, secret scanning,
+          AI-driven threat intelligence, and decentralized security auditing.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="tag">RUST SECURITY</div>
+        <h3>BAKOME GitGuard</h3>
+        <p>
+          High-performance repository scanner capable of detecting secrets,
+          malware signatures, exposed credentials, and supply-chain threats.
+        </p>
+        <a href="#">Open Repository</a>
+      </div>
+
+      <div class="card">
+        <div class="tag">THREAT DETECTION</div>
+        <h3>Sentinel AI</h3>
+        <p>
+          Neural security analysis system using anomaly detection,
+          AI correlation, and automated defensive workflows.
+        </p>
+        <a href="#">Analyze Threats</a>
+      </div>
+
+      <div class="card">
+        <div class="tag">BLOCKCHAIN SECURITY</div>
+        <h3>SupplyChain Sentinel</h3>
+        <p>
+          Zero-trust validation engine integrating SBOM verification,
+          Merkle tree auditing, and artifact provenance checks.
+        </p>
+        <a href="#">Launch Security Suite</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="container">
+
+    <div class="section-title">
+      <div>
+        <h2>Development Roadmap</h2>
+        <p>
+          Planned ecosystem milestones including AI infrastructure,
+          decentralized compute, autonomous systems, and scientific tooling.
+        </p>
+      </div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <h4>2026 • Quantum Trading Expansion</h4>
+        <p>
+          Integration of multi-exchange execution systems with ultra-low latency
+          signal routing and AI reinforcement learning.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h4>2026 • BAKOME AI OS</h4>
+        <p>
+          Launch of modular AI operating system for local inference,
+          agent orchestration, and private compute infrastructure.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h4>2027 • Decentralized Security Grid</h4>
+        <p>
+          Global peer-to-peer cybersecurity intelligence platform leveraging
+          blockchain consensus and distributed threat validation.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="container">
+
+    <div class="section-title">
+      <div>
+        <h2>Contact & Community</h2>
+        <p>
+          Connect with the BAKOME ecosystem through GitHub, AI communities,
+          research initiatives, and open source collaborations.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="tag">GITHUB</div>
+        <h3>BAKOME-Hub</h3>
+        <p>
+          Access repositories, source code, releases,
+          research projects, and collaborative development tools.
+        </p>
+        <a href="https://github.com/BAKOME-Hub" target="_blank">github.com/BAKOME-Hub</a>
+      </div>
+
+      <div class="card">
+        <div class="tag">EMAIL</div>
+        <h3>Research & Collaboration</h3>
+        <p>
+          Partnership discussions, cybersecurity research,
+          AI engineering collaboration, and open source initiatives.
+        </p>
+        <a href="#">fabricekitokobakome2@gmail.com</a>
+      </div>
+
+      <div class="card">
+        <div class="tag">COMMUNITY</div>
+        <h3>Global Open Source Network</h3>
+        <p>
+          Community-driven ecosystem supporting independent developers,
+          AI researchers, and future technology builders.
+        </p>
+        <a href="#">Join Community</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+  </main>  <footer class="footer">
+    <div class="container"><div class="footer-grid">
+
+    <div>
+      <h4>BAKOME HUB</h4>
+      <ul>
+        <li>Open Source AI</li>
+        <li>Cybersecurity</li>
+        <li>Algorithmic Trading</li>
+        <li>Scientific Computing</li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Infrastructure</h4>
+      <ul>
+        <li><a href="#">Rust Engines</a></li>
+        <li><a href="#">Blockchain Systems</a></li>
+        <li><a href="#">AI Agents</a></li>
+        <li><a href="#">Trading APIs</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>
